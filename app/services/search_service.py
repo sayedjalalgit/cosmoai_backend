@@ -1,22 +1,22 @@
 from ddgs import DDGS
 
 
-def search_web(query: str, max_results: int = 3) -> str:
+def search_web(query: str, max_results: int = 5) -> str:
     try:
+        results = []
         with DDGS() as ddgs:
-            results = list(ddgs.text(
-                query,
-                max_results=max_results
-            ))
+            for r in ddgs.text(query, max_results=max_results):
+                results.append(r)
 
         if not results:
             return None
 
-        context = "WEB SEARCH RESULTS:\n\n"
-        for r in results:
-            context += f"Title: {r['title']}\n"
-            context += f"Content: {r['body']}\n"
-            context += f"Source: {r['href']}\n\n"
+        context = "CURRENT WEB SEARCH RESULTS:\n\n"
+        for i, r in enumerate(results):
+            context += f"Result {i+1}:\n"
+            context += f"Title: {r.get('title', '')}\n"
+            context += f"Content: {r.get('body', '')}\n"
+            context += f"Source: {r.get('href', '')}\n\n"
 
         return context
 
