@@ -25,3 +25,4 @@ class User(Base):
 
     conversations = relationship("Conversation", back_populates="user", cascade="all, delete-orphan")
     documents = relationship("Document", back_populates="user", cascade="all, delete-orphan") 
+    subscription = relationship("Subscription", back_populates="user", uselist=False)

@@ -47,3 +47,5 @@ python-dotenv==1.0.1
 
 # HTTP Client
 httpx==0.28.1
+#payment
+stripe==11.1.0

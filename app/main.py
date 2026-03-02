@@ -4,6 +4,8 @@ from app.database import engine, Base
 from app.routers import auth, chat, admin, documents
 import app.models.user
 import app.models.conversation
+# for paymnet
+from payments.router import router as payments_router
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
@@ -28,6 +30,8 @@ app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(admin.router)
 app.include_router(documents.router)
+# for payment
+app.include_router(payments_router)
 
 @app.get("/")
 def root():
