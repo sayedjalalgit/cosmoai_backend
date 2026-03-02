@@ -5,7 +5,10 @@ def search_web(query: str, max_results: int = 5) -> str:
     try:
         results = []
         with DDGS() as ddgs:
-            for r in ddgs.text(query, max_results=max_results):
+            for r in ddgs.text(
+                query + " 2025 2026",
+                max_results=max_results
+            ):
                 results.append(r)
 
         if not results:
@@ -27,6 +30,7 @@ def search_web(query: str, max_results: int = 5) -> str:
 
 def needs_web_search(message: str) -> bool:
     search_keywords = [
+        # English keywords
         'current', 'latest', 'now', 'today',
         'recent', 'new', 'update', 'who is',
         'price', 'news', '2024', '2025', '2026',
@@ -35,10 +39,14 @@ def needs_web_search(message: str) -> bool:
         'stock', 'rate', 'score', 'result',
         'election', 'president', 'prime minister',
         'pm', 'minister', 'government', 'policy',
+        'list of', 'who are', 'names of',
+        'leaders', 'head of', 'ruling',
+        # Bangla keywords
         'এখন', 'বর্তমান', 'আজ', 'সর্বশেষ',
         'নতুন', 'খবর', 'সাম্প্রতিক', 'কে',
         'দাম', 'মূল্য', 'ফলাফল', 'নির্বাচন',
         'প্রধানমন্ত্রী', 'সরকার', 'মন্ত্রী',
+        'তালিকা', 'নেতা',
     ]
     message_lower = message.lower()
     return any(k in message_lower for k in search_keywords)

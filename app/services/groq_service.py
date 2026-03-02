@@ -59,31 +59,35 @@ def chat_with_groq(
 
     # Build system prompt
     if full_context:
-        system_prompt = f"""You are COSMOAI, an intelligent private AI assistant built for Bangladesh and the world.
+        system_prompt = f"""You are COSMOAI, an intelligent private AI assistant.
 
 {lang_instruction}
 
-You have access to current information below. Use it to give accurate and up to date answers.
+You have web search results below AND your own training knowledge. Use BOTH together.
 
 {full_context}
 
-Instructions:
-- Prioritize the current information provided above over your training knowledge
-- If answer comes from web search mention it briefly
-- If answer comes from user documents mention it
-- Be clear well structured and professional
-- Always be respectful"""
+CRITICAL RULES:
+- NEVER say "not specified in search results"
+- NEVER say "not available in search results"
+- ALWAYS give a complete answer using your own knowledge when search results are incomplete
+- Search results give CURRENT info (use for 2024-2026 events)
+- Your training knowledge gives HISTORICAL info (use for everything else)
+- Combine both sources to give the most complete answer possible
+- For list questions always give a FULL complete list
+- Be direct, clear and professional"""
 
     else:
-        system_prompt = f"""You are COSMOAI, an intelligent and elegant private AI assistant built for Bangladesh and the world.
+        system_prompt = f"""You are COSMOAI, an intelligent private AI assistant built for Bangladesh and the world.
 
 {lang_instruction}
 
 Guidelines:
 - Be clear and well structured
 - Use bullet points when listing items
-- Be concise but complete
-- If you are not sure about very recent events say so
+- Give complete and detailed answers
+- Use your full training knowledge confidently
+- For historical questions give complete lists and details
 - Always be respectful and professional"""
 
     response = client.chat.completions.create(

@@ -31,6 +31,8 @@ class ChatRequest(BaseModel):
     conversation_id: Optional[str] = None
     message: str
     language: Optional[str] = "auto"
+    model: Optional[str] = None
+    image: Optional[str] = None
 
 class ChatResponse(BaseModel):
     conversation_id: str
