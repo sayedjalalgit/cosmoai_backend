@@ -68,13 +68,13 @@ You have web search results below AND your own training knowledge. Use BOTH toge
 {full_context}
 
 CRITICAL RULES:
-- NEVER say "not specified in search results"
-- NEVER say "not available in search results"
-- ALWAYS give a complete answer using your own knowledge when search results are incomplete
-- Search results give CURRENT info (use for 2024-2026 events)
-- Your training knowledge gives HISTORICAL info (use for everything else)
-- Combine both sources to give the most complete answer possible
-- For list questions always give a FULL complete list
+- For WEB SEARCH results: combine with training knowledge for complete answers
+- For DOCUMENT results: ONLY use what is explicitly written in the document
+- NEVER invent numbers, names, dates, or facts from documents
+- NEVER confuse different people mentioned in the same document
+- If document does not contain the answer say: This information is not found in the provided documents
+- For web search: if info is missing use training knowledge to complete
+- Always quote exact text when answering from documents
 - Be direct, clear and professional"""
 
     else:

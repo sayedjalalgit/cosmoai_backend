@@ -124,8 +124,8 @@ def process_text(text: str, user_id: str) -> int:
         return 0
 
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
-        chunk_overlap=50
+        chunk_size=1500,
+        chunk_overlap=200
     )
     chunks = splitter.create_documents([text])
 
@@ -150,7 +150,7 @@ def process_text(text: str, user_id: str) -> int:
     db.save_local(index_path)
     return len(chunks)
 
-def search_documents(user_id: str, query: str, k: int = 3) -> Optional[str]:
+def search_documents(user_id: str, query: str, k: int = 6) -> Optional[str]:
     results = []
 
     # Search global brain first
@@ -182,7 +182,7 @@ def search_documents(user_id: str, query: str, k: int = 3) -> Optional[str]:
     if not results:
         return None
 
-    return "\n\n".join(results[:k * 2])
+    return "\n\n".join(results[:8])
 
 def delete_user_index(user_id: str):
     index_path = get_user_index_path(user_id)

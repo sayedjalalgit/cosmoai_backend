@@ -37,8 +37,8 @@ from langchain_community.document_loaders import PyPDFLoader
 
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500,
-    chunk_overlap=100
+    chunk_size=1000,
+    chunk_overlap=200  
 )
 
 all_chunks = []
