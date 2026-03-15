@@ -19,7 +19,12 @@ app = FastAPI(
 # CORS — allows Next.js to talk to FastAPI
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://89.167.100.143:3000",
+        "https://cosmoai.hair",
+        "https://www.cosmoai.hair",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
